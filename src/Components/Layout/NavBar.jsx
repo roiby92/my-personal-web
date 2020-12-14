@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     appBar: {
+        backgroundColor:'#26a69a',
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
@@ -83,12 +85,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MiniDrawer() {
+export default function NavBar() {
     const classes = useStyles();
+    const history = useHistory();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const pageList = ['Home', 'About', 'Education', 'Military Service']
+
+    const linkToPage = i => {
+        let page
+        if (i === 3) {
+            page = "militaryservice"
+        }
+        else {
+            page = pageList[i].toLocaleLowerCase()
+        }
+        history.push(`/${page}`)
+    }
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -144,12 +159,12 @@ export default function MiniDrawer() {
                 <Divider />
                 <List>
                     {pageList.map((text, index) => (
-                        <ListItem button key={index}>
+                        <ListItem button key={index} onClick={() => linkToPage(index)}>
                             <ListItemIcon>{index === 0 ? <HomeIcon />
                                 : index === 1 ? < InfoIcon />
-                                : index === 2 ? <SchoolIcon />
-                                : index === 3 ? <DirectionsBoatIcon />
-                                : null}</ListItemIcon>
+                                    : index === 2 ? <SchoolIcon />
+                                        : index === 3 ? <DirectionsBoatIcon />
+                                            : null}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
