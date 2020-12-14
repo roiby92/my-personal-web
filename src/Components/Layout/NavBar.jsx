@@ -17,7 +17,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
-import InfoIcon from '@material-ui/icons/Info';
 import DirectionsBoatIcon from '@material-ui/icons/DirectionsBoat';
 import SchoolIcon from '@material-ui/icons/School';
 const drawerWidth = 240;
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     appBar: {
-        backgroundColor:'#26a69a',
+        backgroundColor: '#26a69a',
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
@@ -91,7 +90,7 @@ export default function NavBar() {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
-    const pageList = ['Home', 'About', 'Education', 'Military Service']
+    const pageList = ['Home', 'Education', 'Military Service']
 
     const linkToPage = i => {
         let page
@@ -161,10 +160,9 @@ export default function NavBar() {
                     {pageList.map((text, index) => (
                         <ListItem button key={index} onClick={() => linkToPage(index)}>
                             <ListItemIcon>{index === 0 ? <HomeIcon />
-                                : index === 1 ? < InfoIcon />
-                                    : index === 2 ? <SchoolIcon />
-                                        : index === 3 ? <DirectionsBoatIcon />
-                                            : null}</ListItemIcon>
+                                : index === 1 ? <SchoolIcon />
+                                    : index === 2 ? <DirectionsBoatIcon />
+                                        : null}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
