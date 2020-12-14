@@ -100,7 +100,7 @@ export default function NavBar() {
         else {
             page = pageList[i].toLocaleLowerCase()
         }
-        history.push(`/${page}`)
+        page === 'home' ? history.push(`/`) : history.push(`/${page}`)
     }
 
     const handleDrawerOpen = () => {

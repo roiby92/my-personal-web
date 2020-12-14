@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <Layout>
-        <Route path="/home" exact render={() => <Home />} />
+        <Route path="/" exact render={() => <Home />} />
         <Route path="/about" exact render={() => <About />} />
         <Route path="/education" exact render={() => <Education />} />
         <Route path="/militaryservice" exact render={() => <MilitaryService />} />
